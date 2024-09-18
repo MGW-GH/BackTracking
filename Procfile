@@ -1,2 +1,2 @@
 
-web: gunicorn proj_name.wsgi
+web: gunicorn back_tracker.wsgi
