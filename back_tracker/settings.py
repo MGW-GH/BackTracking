@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'blog',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
