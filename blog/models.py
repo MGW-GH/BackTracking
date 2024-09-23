@@ -15,6 +15,19 @@ class NewPost(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     def __str__(self):
-        return self.title
+        return f"{self.title} by {self.user_id}"
 
 
+
+class Rating(models.Model):
+    post = models.ForeignKey(NewPost, on_delete=models.CASCADE, related_name="rating")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rater")
+    score = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        # Ensure that the score is always between 0 and 100
+        if 0 <= self.score <= 100:
+            super().save(*args, **kwargs)
+        else:
+            raise ValueError("Score must be between 0 and 100")
