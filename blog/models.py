@@ -7,8 +7,8 @@ STATUS = ((0, "Current location"), (1, "Past adventure"))
 # Create your models here.
 class NewPost(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
-    country = CountryField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts", null=True)
+    country = CountryField(max_length=200)
     location = models.CharField(max_length=100, unique=False)
     image = models.ImageField(upload_to='media/blog_images/')
     created_at = models.DateTimeField(auto_now_add=True)
