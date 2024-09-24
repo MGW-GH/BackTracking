@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Stamp
 
 # Create your views here.
-def my_blog(request):
-    return HttpResponse("Hello, Blog!")
+class StampList(generic.ListView):
+    model = Stamp

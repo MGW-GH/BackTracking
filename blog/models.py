@@ -14,6 +14,9 @@ class Stamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
+    class Meta:
+        ordering = ["-created_at"]
+
     def __str__(self):
         return f"{self.title} by {self.user}"
 
@@ -25,9 +28,15 @@ class Rating(models.Model):
     percentage_score = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["-created_at"]
+
     def save(self, *args, **kwargs):
         # Ensure that the score is always between 0 and 100
         if 0 <= self.percentage_score <= 100:
             super().save(*args, **kwargs)
         else:
             raise ValueError("Score must be between 0 and 100")
+
+    def __str__(self):
+        return f"{self.user} scored this stamp {self.percentage_score}!"
