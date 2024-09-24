@@ -10,7 +10,7 @@ class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_stamps", null=True)
     country = CountryField(max_length=200)
     location = models.CharField(max_length=100, unique=False)
-    image = models.ImageField(upload_to='media/blog_images/')
+    image = models.ImageField(upload_to='blog_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 

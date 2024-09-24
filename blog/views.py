@@ -4,4 +4,5 @@ from .models import Stamp
 
 # Create your views here.
 class StampList(generic.ListView):
-    model = Stamp
+    queryset = Stamp.objects.all()
+    template_name = "stamp_list.html"
