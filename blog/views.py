@@ -23,7 +23,7 @@ def stamp_detail(request, title):
     :template:`blog/stamp_detail.html`
     """
 
-    queryset = Post.objects.filter(status=1)
+    queryset = Stamp.objects
     stamp = get_object_or_404(queryset, title=title)
 
     return render(
