@@ -6,4 +6,4 @@ from .models import Stamp
 class StampList(generic.ListView):
     queryset = Stamp.objects.all()
     template_name = "blog/stamp_feed.html"
-    paginate_by = 4
+    paginate_by = 6
