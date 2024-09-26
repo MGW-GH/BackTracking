@@ -12,7 +12,7 @@
     <h1>Stamps Feed</h1>
     {% for stamp in object_list %}
     <h2>{{stamp.title}}</h2>
-    <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 300px;"/>
+    <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 300px;" />
     <p>{{stamp.location}}</p>
     <p>{{stamp.country.name}}</p>
     <p>by {{stamp.user}}</p>
