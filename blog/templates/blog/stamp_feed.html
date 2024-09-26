@@ -18,7 +18,7 @@
                                     <p class="author">{{ stamp.user }}</p>
                                 </div>
                             </div>
-                            <a href="#" class="post-link">
+                            <a href="{% url 'stamp_detail' stamp.title %}" class="post-link">
                                 <h2 class="card-title">{{ stamp.title }}</h2>
                             </a>
                             <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 300px;" />
