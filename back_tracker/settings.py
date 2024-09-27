@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'blog',
+    'gallery',
     'user_profile',
     'django_countries',
 ]

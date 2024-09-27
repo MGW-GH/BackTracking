@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+  <div class="container mt-5">
+    <h2>{{ request.user.username }}'s Gallery</h2>
+    <div class="row">
+      {% for stamp in stamps %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ stamp.image.url }}" class="card-img-top" alt="{{ stamp.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ stamp.title }}</h5>
+              <p class="card-text">{{ stamp.description }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
