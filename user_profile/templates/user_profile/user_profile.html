@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8">
+      <!-- Title goes between these h2 tags -->
+      <h2>{{ user_profile.alias }}</h2>
+      <!-- Content goes directly underneath this -->
+      {{ user_profile.bio | safe }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+      <!-- Updated on field goes in here -->
+
+      <p class="text-end"><em>Base: {{ user_profile.base_country }}</em></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
