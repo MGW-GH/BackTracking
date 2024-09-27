@@ -23,7 +23,7 @@ class Stamp(models.Model):
 
 
 class Rating(models.Model):
-    stamp = models.ForeignKey(Stamp, on_delete=models.CASCADE, related_name="rating")
+    stamp = models.ForeignKey(Stamp, on_delete=models.CASCADE, related_name="ratings")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rater")
     percentage_score = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
