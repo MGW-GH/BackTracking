@@ -1,24 +1,27 @@
-const editButtons = document.getElementsByClassName("btn-edit");
-const ratingText = document.getElementById("id_body");
-const ratingForm = document.getElementById("ratingForm");
-const submitButton = document.getElementById("submitButton");
+document.addEventListener("DOMContentLoaded", () => {
+    const editButtons = document.getElementsByClassName("btn-edit");
+    const ratingText = document.getElementById("id_percentage_score");  // Ensure this ID matches
+    const ratingForm = document.getElementById("ratingForm");
+    const submitButton = document.getElementById("submitButton");
 
-/**
-* Initializes edit functionality for the provided edit buttons.
-* 
-* For each button in the `editButtons` collection:
-* - Retrieves the associated comment's ID upon click.
-* - Fetches the content of the corresponding comment.
-* - Populates the `commentText` input/textarea with the comment's content for editing.
-* - Updates the submit button's text to "Update".
-* - Sets the form's action attribute to the `edit_comment/{commentId}` endpoint.
-*/
-for (let button of editButtons) {
-  button.addEventListener("click", (e) => {
-    let ratingId = e.target.getAttribute("rating_id");
-    let ratingContent = document.getElementById(`rating${ratingId}`).innerText;
-    ratingText.value = ratingContent;
-    submitButton.innerText = "Update";
-    ratingForm.setAttribute("action", `edit_rating/${ratingId}`);
-  });
-}
+    for (let button of editButtons) {
+        button.addEventListener("click", (e) => {
+            let ratingId = e.target.getAttribute("rating_id");
+            
+            // Get the rating content as an integer
+            let ratingContent = parseInt(document.getElementById(`rating${ratingId}`).innerText, 10);
+            
+            // Update the form input value
+            if (ratingText) { // Check if ratingText is not null
+                ratingText.value = ratingContent;
+            } else {
+                console.error("ratingText element not found");
+            }
+
+            // Update button text and form action
+            submitButton.innerText = "Update";
+            ratingForm.setAttribute("action", `edit_rating/${ratingId}`);
+            console.log("Form action set to: ", ratingForm.action);  
+        });
+    }
+});
