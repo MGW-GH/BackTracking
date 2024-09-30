@@ -1,17 +1,10 @@
+{% extends "base.html" %}
 
-{% load static %}
+{% block content %}
 
+<img src="https://res-console.cloudinary.com/dnidmsdwx/thumbnails/v1/image/upload/v1727721823/bGFyZ2VfYmFja2dyb3VuXzRiZDk5ZTg2LWZhOWEtNDg2Ni05YmNhLTc2ZjhlZTFiZjZhYV9maDNvanI=/drilldown" class="img-fluid w-100 vh-100" style="object-fit: cover;" alt="{{ mountain_back_packer }}" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django-Setup</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
-</head>
-<body>
-    <h1>Hello Django From Heroku</h1>
-    
-</body>
-</html>
+{% endblock %}
+{% block copyright %}
+Copyright 2024 Matt Webster
+{% endblock %}
