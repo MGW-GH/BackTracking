@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 
@@ -10,7 +11,7 @@ class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_stamps", null=True)
     country = CountryField(max_length=200)
     location = models.CharField(max_length=100, unique=False)
-    image = models.ImageField(upload_to='blog_images/')
+    image = CloudinaryField('image')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
