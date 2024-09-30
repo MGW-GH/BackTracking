@@ -84,7 +84,7 @@
                 <form id="ratingForm" method="post" style="margin-top: 1.3em;">
                     {{ rating_form | crispy }}
                     {% csrf_token %}
-                    <input type="number" id="id_percentage_score" name="percentage_score" style="display:none;" min="0" max="100" />
+                    <input type="number" id="id_percentage_score" name="percentage_score" min="0" max="100" />
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
                 {% else %}

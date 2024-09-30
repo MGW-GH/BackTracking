@@ -76,6 +76,9 @@ def rating_edit(request, title, rating_id):
             rating.save()
             messages.add_message(request, messages.SUCCESS, 'Rating Updated!')
         else:
+            print("Form errors:", rating_form.errors)
+            print("User is:", request.user)
+            print("Rating user is:", rating.user)
             messages.add_message(request, messages.ERROR, 'Error updating rating!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
