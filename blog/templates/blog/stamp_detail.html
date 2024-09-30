@@ -67,18 +67,21 @@
                         This rating is awaiting approval
                     </p>
                     {% endif %}
+                    {% if user.is_authenticated and rating.user == user %}
+                    <button class="btn btn-edit" rating_id="{{ rating.id }}">Edit</button>
+                    {% endif %}
                 </div>
                 <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
-        <!-- Creating New Comments -->
+        <!-- Creating New Ratings -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
                 {% if user.is_authenticated %}
                 <h3>Leave a rating:</h3>
                 <p>Posting as: {{ user }}</p>
-                <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                <form id="ratingForm" method="post" style="margin-top: 1.3em;">
                     {{ rating_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
@@ -92,3 +95,7 @@
 </div>
 
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/ratings.js' %}"></script>
+{% endblock %}

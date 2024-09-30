@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
-from .models import Stamp
+from django.http import HttpResponseRedirect
+from .models import Stamp, Rating
 from .forms import RatingForm
 
 # Create your views here.
@@ -31,6 +32,7 @@ def stamp_detail(request, title):
     rating_count = stamp.ratings.filter(approved=True).count()
 
     if request.method == "POST":
+        print("Received a POST request")
         rating_form = RatingForm(data=request.POST)
         if rating_form.is_valid():
             rating = rating_form.save(commit=False)
@@ -42,7 +44,8 @@ def stamp_detail(request, title):
                 'Rating submitted'
             )
 
-    rating_form = RatingForm()
+    rating_form = RatingForm(data=request.POST)
+    print("About to render template")
 
     return render(
         request,
@@ -54,3 +57,25 @@ def stamp_detail(request, title):
         },
     )
 
+
+def rating_edit(request, title, rating_id):
+    """
+    view to edit ratings
+    """
+    if request.method == "POST":
+
+        queryset = Stamp.objects
+        stamp = get_object_or_404(queryset, title=title)
+        rating = get_object_or_404(Rating, pk=rating_id)
+        rating_form = RatingForm(data=request.POST, instance=rating)
+
+        if rating_form.is_valid() and rating.user == request.user:
+            rating = rating_form.save(commit=False)
+            rating.stamp = stamp
+            rating.approved = False
+            rating.save()
+            messages.add_message(request, messages.SUCCESS, 'Rating Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating rating!')
+
+    return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
