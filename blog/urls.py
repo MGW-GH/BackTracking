@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.StampList.as_view(), name='feed'),
     path('<str:title>/', views.stamp_detail, name='stamp_detail'),
     path('<str:title>/edit_rating/<int:rating_id>', views.rating_edit, name='rating_edit'),
-
+    path('<str:title>/delete_rating/<int:rating_id>', views.rating_delete, name='rating_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

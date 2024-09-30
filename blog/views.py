@@ -82,3 +82,16 @@ def rating_edit(request, title, rating_id):
             messages.add_message(request, messages.ERROR, 'Error updating rating!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
+
+def rating_delete(request, title, rating_id):
+    queryset = Stamp.objects
+    stamp = get_object_or_404(queryset, title=title)
+    rating = get_object_or_404(Rating, pk=rating_id)
+
+    if rating.user == request.user:
+        rating.delete()
+        messages.add_message(request, messages.SUCCESS, 'Rating removed!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own ratings!')
+
+    return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
