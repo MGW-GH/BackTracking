@@ -50,10 +50,15 @@
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
                     <a class="nav-link
                           {% if request.path == feed_url %}active{%endif%}" aria-current="page"
                         href="{% url 'feed' %}">Blog Feed</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link
+                          {% if request.path == add_stamp_url %}active{%endif%}" aria-current="page"
+                        href="{% url 'add_stamp' %}">New Stamp</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link

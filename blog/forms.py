@@ -1,4 +1,4 @@
-from .models import Rating
+from .models import Rating, Stamp
 from django import forms
 
 

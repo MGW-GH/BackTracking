@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Stamps in {{ country }}</h2>
+
+{% if stamps %}
+    <ul>
+    {% for stamp in stamps %}
+        <li>{{ stamp.title }} - {{ stamp.country }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stamps found for this country.</p>
+{% endif %}
+
+{% endblock %}

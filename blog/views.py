@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -97,9 +97,11 @@ def rating_delete(request, title, rating_id):
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
 
+
+@login_required
 def add_stamp(request):
     if request.method == 'POST':
-        form = StampForm(request.POST)
+        form = StampForm(request.POST, request.FILES) 
         if form.is_valid():
             stamp = form.save(commit=False)  # Don't save yet
             stamp.user = request.user  # Assign the current user to the stamp
@@ -108,4 +110,10 @@ def add_stamp(request):
     else:
         form = StampForm()
     
-    return render(request, 'add_stamp.html', {'form': form})
+    return render(request, 'blog/add_stamp.html', {'form': form})
+
+
+def search_results(request):
+    country = request.GET.get('country')
+    stamps = Stamp.objects.filter(country=country) if country else Stamp.objects.none()
+    return render(request, 'search_results.html', {'stamps': stamps, 'country': country})
