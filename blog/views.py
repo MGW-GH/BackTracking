@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Stamp, Rating
-from .forms import RatingForm
+from .forms import RatingForm, StampForm
 
 # Create your views here.
 class StampList(generic.ListView):
@@ -95,3 +96,16 @@ def rating_delete(request, title, rating_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own ratings!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
+
+def add_stamp(request):
+    if request.method == 'POST':
+        form = StampForm(request.POST)
+        if form.is_valid():
+            stamp = form.save(commit=False)  # Don't save yet
+            stamp.user = request.user  # Assign the current user to the stamp
+            stamp.save()  # Now save the stamp
+            return redirect('feed')  # Redirect to a success page, e.g., the home page
+    else:
+        form = StampForm()
+    
+    return render(request, 'add_stamp.html', {'form': form})

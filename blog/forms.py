@@ -13,3 +13,8 @@ class RatingForm(forms.ModelForm):
                 'max': '100',
             }),
         }
+
+class StampForm(forms.ModelForm):
+    class Meta:
+        model = Stamp
+        fields = ['title', 'country', 'location', 'image', 'status'] 
