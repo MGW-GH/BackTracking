@@ -7,4 +7,4 @@ class CountrySearchForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Populate the choices with unique country values from the Stamp model
-        self.fields['country'].choices = [(stamp.country, stamp.country) for stamp in Stamp.objects.all().distinct()]
+        self.fields['country'].choices = [(stamp.country.name, stamp.country.name) for stamp in Stamp.objects.all().distinct()]

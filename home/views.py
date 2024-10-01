@@ -10,15 +10,18 @@ class HomePage(TemplateView):
     """
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = CountrySearchForm()
+        context['form'] = form
+        
+        # Get all stamps initially
+        stamps = Stamp.objects.all()
 
-def home(request):
-    form = CountrySearchForm()
-    stamps = Stamp.objects.all()  # Get all stamps initially
-
-    # Check if a country has been selected
-    if request.method == 'GET':
-        selected_country = request.GET.get('country', None)
+        # Check if a country has been selected
+        selected_country = self.request.GET.get('country', None)
         if selected_country:
             stamps = stamps.filter(country=selected_country)  # Filter stamps by selected country
-
-    return render(request, 'home.html', {'form': form, 'stamps': stamps})
+        
+        context['stamps'] = stamps
+        return context
