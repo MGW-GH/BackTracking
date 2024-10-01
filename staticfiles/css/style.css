@@ -1,10 +1,7 @@
 .bg-warning-gradient {
-    background: linear-gradient(to right, #e7be07, #ff7c02be);
-}
-
-.footer {
     background: linear-gradient(to right, #fa9804, #ff6702);
 }
+
 body {
     background-color: #F9FAFC;
 }
