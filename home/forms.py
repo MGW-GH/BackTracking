@@ -1,10 +1,6 @@
 from django import forms
 from .models import Stamp
+from django_countries import countries
 
 class CountrySearchForm(forms.Form):
-    country = forms.ChoiceField(choices=[], label="Select Country")
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Populate the choices with unique country values from the Stamp model
-        self.fields['country'].choices = [(stamp.country.name, stamp.country.name) for stamp in Stamp.objects.all().distinct()]
+    country = forms.ChoiceField(choices=[(code, name) for code, name in countries])

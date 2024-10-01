@@ -114,6 +114,6 @@ def add_stamp(request):
 
 
 def search_results(request):
-    country = request.GET.get('country')
-    stamps = Stamp.objects.filter(country=country) if country else Stamp.objects.none()
-    return render(request, 'blog/search_results.html', {'stamps': stamps, 'country': country})
+    country_initials = request.GET.get('country')
+    stamps = Stamp.objects.filter(country=country_initials) if country_initials else Stamp.objects.none()
+    return render(request, 'blog/search_results.html', {'stamps': stamps, 'country': country_initials})
