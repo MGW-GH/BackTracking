@@ -132,6 +132,19 @@ def edit_stamp(request, title):
 
     return render(request, 'blog/add_stamp.html', {'form': form, 'stamp': stamp})
 
+def delete_stamp(request, title):
+    """
+    view to delete stamps
+    """
+    stamp = get_object_or_404(Stamp, title=title)
+
+    if request.method == "POST":
+        stamp.delete()
+        messages.success(request, "Stamp deleted successfully.")
+        return redirect('feed')
+    
+    return redirect('stamp_detail', title=title)
+
 
 
 def search_results(request):

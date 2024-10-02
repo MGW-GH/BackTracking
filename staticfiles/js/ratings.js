@@ -46,3 +46,14 @@ for (let button of deleteButtons) {
       deleteModal.show();
     });
   }
+
+
+for (let button of deleteButtons) {
+    button.addEventListener("click", (e) => {
+        // Assuming you have a data attribute for the stamp title
+        const stampTitle = e.target.getAttribute("data-title");
+        // Set the href for the delete confirmation
+        deleteConfirm.href = `/blog/stamp/delete/${stampTitle}/`; // Adjust this path to match your URL structure
+        deleteModal.show();
+    });
+}
