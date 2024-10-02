@@ -61,26 +61,23 @@ def stamp_detail(request, title):
 
 def rating_edit(request, title, rating_id):
     """
-    view to edit ratings
+    View to edit ratings.
     """
-    if request.method == "POST":
+    # Fetch the rating object based on rating_id and ensure it's by the current user
+    rating = get_object_or_404(Rating, pk=rating_id, user=request.user)
 
-        queryset = Stamp.objects
-        stamp = get_object_or_404(queryset, title=title)
-        rating = get_object_or_404(Rating, pk=rating_id)
+    if request.method == "POST":
+        # Bind the form with the POST data and the existing rating instance
         rating_form = RatingForm(data=request.POST, instance=rating)
 
-        if rating_form.is_valid() and rating.user == request.user:
+        if rating_form.is_valid():
+            # Update the rating but keep it pending approval
             rating = rating_form.save(commit=False)
-            rating.stamp = stamp
             rating.approved = False
             rating.save()
-            messages.add_message(request, messages.SUCCESS, 'Rating Updated!')
+            messages.success(request, 'Rating Updated!')
         else:
-            print("Form errors:", rating_form.errors)
-            print("User is:", request.user)
-            print("Rating user is:", rating.user)
-            messages.add_message(request, messages.ERROR, 'Error updating rating!')
+            messages.error(request, 'Error updating rating!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
 
