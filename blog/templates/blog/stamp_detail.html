@@ -12,7 +12,7 @@
                 <h2 class="post-title">{{stamp.location}}</h2>
                 <h2 class="post-title">{{stamp.country.name}}</h2>
                 <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">{{ stamp.user }} | {{ stamp.created_on }}</p>
+                <p class="post-subtitle">{{ stamp.user }} | {{ stamp.created_at }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 500px;" />
@@ -20,7 +20,11 @@
         </div>
     </div>
 </div>
-
+<div>
+    {% if user.is_authenticated and user == stamp.user %}
+    <a href="{% url 'edit_stamp' stamp.title %}" class="btn btn-primary">Edit Stamp</a>
+    {% endif %}
+</div>
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">

@@ -108,9 +108,30 @@ def add_stamp(request):
             stamp.save()  # Now save the stamp
             return redirect('feed')  # Redirect to a success page, e.g., the home page
     else:
-        form = StampForm()
+        form = StampForm(instance=stamp)
     
-    return render(request, 'blog/add_stamp.html', {'form': form})
+    return render(request, 'blog/add_stamp.html', {'form': form, 'stamp': stamp})
+
+
+def edit_stamp(request, title):
+    """
+    view to edit stamps
+    """
+    stamp = get_object_or_404(Stamp, title=title)
+
+    if request.method == "POST":
+        form = StampForm(request.POST, request.FILES, instance=stamp)
+        if form.is_valid():
+            stamp = form.save(commit=False)  # Don't save yet
+            stamp.user = request.user  # Assign the current user to the stamp
+            stamp.save()
+            messages.success(request, "Stamp updated successfully.")
+            return redirect('stamp_detail', title=title)
+    else:
+        form = StampForm(instance=stamp)
+
+    return render(request, 'blog/add_stamp.html', {'form': form, 'stamp': stamp})
+
 
 
 def search_results(request):
