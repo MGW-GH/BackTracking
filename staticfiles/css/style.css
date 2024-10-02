@@ -53,6 +53,7 @@ body {
 }
 
 .text-flash {
+    min-width: 30%;
     background: linear-gradient(to right, #fa9804, #ff6702);
 }
 
