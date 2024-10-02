@@ -48,12 +48,12 @@ for (let button of deleteButtons) {
   }
 
 
-for (let button of deleteButtons) {
-    button.addEventListener("click", (e) => {
-        // Assuming you have a data attribute for the stamp title
-        const stampTitle = e.target.getAttribute("data-title");
-        // Set the href for the delete confirmation
-        deleteConfirm.href = `/blog/stamp/delete/${stampTitle}/`; // Adjust this path to match your URL structure
-        deleteModal.show();
-    });
-}
+  const deleteStampButtons = document.getElementsByClassName("btn-delete-stamp");
+  const deleteStampModal = new bootstrap.Modal(document.getElementById("deleteStampModal"));
+  const deleteConfirmStamp = document.getElementById("deleteConfirmStamp"); // If you have a specific confirmation button
+  
+  for (let button of deleteStampButtons) {
+      button.addEventListener("click", (e) => {
+          deleteStampModal.show();
+      });
+  }
