@@ -6,59 +6,54 @@
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
+            <div class="col-md-9 masthead-image">
+                <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" />
+            </div>
+            <div class="col-md-3 masthead-headers">
                 <h1 class="post-title">{{ stamp.title }}</h1>
-                <h2 class="post-title">{{stamp.location}}</h2>
-                <h2 class="post-title">{{stamp.country.name}}</h2>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">{{ stamp.user }} | {{ stamp.created_at }}</p>
-            </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 500px;" />
-            </div>
-        </div>
-    </div>
-</div>
-<div>
-    {% if user.is_authenticated and user == stamp.user %}
-    <a href="{% url 'edit_stamp' stamp.title %}" class="btn btn-primary">Edit</a>
-    <button type="button" class="btn btn-danger btn-delete-stamp" data-toggle="modal" data-target="#deleteStampModal">
-        Delete Stamp
-    </button>
+                <h2 class="post-title">{{ stamp.location }}</h2>
+                <h2 class="post-title">{{ stamp.country.name }}</h2>
+                <div class="position-absolute bottom-0 end-0">
+                    {% if user.is_authenticated and user == stamp.user %}
+                    <a href="{% url 'edit_stamp' stamp.title %}" class="btn btn-primary">Edit</a>
+                    <button type="button" class="btn btn-danger btn-delete-stamp" data-toggle="modal"
+                        data-target="#deleteStampModal">
+                        Delete Stamp
+                    </button>
 
-    <!-- Modal for deleting stamp -->
-    <div class="modal fade" id="deleteStampModal" tabindex="-1" role="dialog" aria-labelledby="deleteStampModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteStampModalLabel">Confirm Deletion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this stamp?
-                </div>
-                <div class="modal-footer">
-                    <form id="deleteStampForm" action="{% url 'delete_stamp' stamp.title %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Yes, delete</button>
-                    </form>
+                    <!-- Modal for deleting stamp -->
+                    <div class="modal fade" id="deleteStampModal" tabindex="-1" role="dialog"
+                        aria-labelledby="deleteStampModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteStampModalLabel">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this stamp?
+                                </div>
+                                <div class="modal-footer">
+                                    <form id="deleteStampForm" action="{% url 'delete_stamp' stamp.title %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Yes, delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    {% endif %}
 </div>
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
-                    {{ stamp.location | safe }}
-                </p>
+                <p class="post-subtitle">{{ stamp.user }} | {{ stamp.created_at }}</p>
             </div>
         </div>
     </div>
@@ -84,9 +79,7 @@
                 faded{% elif not rating.approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
                         {{ rating.user }}
-                        <span class="font-weight-normal">
-                            {{ rating.created_at }}
-                        </span> rated:
+                        rated:
                     </p>
                     <div id="rating{{ rating.id }}">
                         {{ rating.percentage_score | linebreaks }}
@@ -108,15 +101,16 @@
         <!-- Creating New Ratings -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user != stamp.user %}
                 <h3>Leave a rating:</h3>
                 <p>Posting as: {{ user }}</p>
                 <form id="ratingForm" method="post" style="margin-top: 1.3em;">
                     {{ rating_form | crispy }}
                     {% csrf_token %}
-                    <input type="number" id="id_percentage_score" name="percentage_score" min="0" max="100" />
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
+                {% elif user.is_authenticated and user == stamp.user %}
+
                 {% else %}
                 <p>Log in to leave a rating</p>
                 {% endif %}
@@ -138,7 +132,6 @@
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a id="deleteConfirm" href="#" class="btn
           btn-danger">Delete</a>
             </div>
