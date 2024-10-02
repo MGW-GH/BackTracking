@@ -10,7 +10,7 @@ from .forms import RatingForm, StampForm
 class StampList(generic.ListView):
     queryset = Stamp.objects.all()
     template_name = "blog/stamp_feed.html"
-    paginate_by = 6
+    paginate_by = 8
 
 
 def stamp_detail(request, title):
