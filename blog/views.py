@@ -108,9 +108,9 @@ def add_stamp(request):
             stamp.save()  # Now save the stamp
             return redirect('feed')  # Redirect to a success page, e.g., the home page
     else:
-        form = StampForm(instance=stamp)
+        form = StampForm()
     
-    return render(request, 'blog/add_stamp.html', {'form': form, 'stamp': stamp})
+    return render(request, 'blog/add_stamp.html', {'form': form})
 
 
 def edit_stamp(request, title):
