@@ -22,11 +22,8 @@
                                 <h2 class="card-title">{{ stamp.title }}</h2>
                             </a>
                             <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 300px;" />
-                            <p>{{stamp.location}}</p>
-                            <p>{{stamp.country.name}}</p>
+                            <p>{{stamp.location}} - {{stamp.country.name}}</p>
                             <hr />
-                            <p class="card-text text-muted h6">{{ stamp.created_on}}
-                            </p>
                         </div>
                     </div>
                 </div>
