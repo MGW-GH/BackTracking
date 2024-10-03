@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from cloudinary.utils import cloudinary_url
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 
@@ -14,6 +15,10 @@ class Stamp(models.Model):
     image = CloudinaryField('image')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+
+    def get_webp_image(self):
+        url, options = cloudinary_url(self.image.public_id, format="webp", quality="auto:low")
+        return url
 
     class Meta:
         ordering = ["-created_at"]

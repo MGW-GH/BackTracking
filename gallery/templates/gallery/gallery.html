@@ -9,7 +9,7 @@
       {% for stamp in stamps %}
         <div class="col-md-4 mb-4">
           <div class="card">
-            <img src="{{ stamp.image.url }}" class="card-img-top" alt="{{ stamp.title }}">
+            <img src="{{ stamp.get_webp_image }}" class="card-img-top" alt="{{ stamp.title }}">
             <div class="card-body">
               <h5 class="card-title">{{ stamp.title }}</h5>
               <p class="card-text">{{ stamp.description }}</p>

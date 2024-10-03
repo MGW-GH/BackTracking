@@ -6,7 +6,7 @@
 {% if stamps %}
     <ul>
     {% for stamp in stamps %}
-        <li>{{ stamp.title }} - {{ stamp.location }} - <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 300px;" /> - {{ stamp.user }}</li>
+        <li>{{ stamp.title }} - {{ stamp.location }} - <img src="{{ stamp.get_webp_image }}" alt="{{ stamp.title }}" style="max-width: 300px;" /> - {{ stamp.user }}</li>
     {% endfor %}
     </ul>
 {% else %}

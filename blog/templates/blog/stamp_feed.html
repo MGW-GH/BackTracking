@@ -21,7 +21,7 @@
                             <a href="{% url 'stamp_detail' stamp.title %}" class="post-link">
                                 <h2 class="card-title">{{ stamp.title }}</h2>
                             </a>
-                            <img src="{{ stamp.image.url }}" alt="{{ stamp.title }}" style="max-width: 450px;" />
+                            <img src="{{ stamp.get_webp_image }}" alt="{{ stamp.title }}" style="max-width: 450px;" loading="lazy" />
                             <div class="text-flash">
                                 <p class="author">{{stamp.location}} - {{stamp.country.name}}</p>
                             </div>
