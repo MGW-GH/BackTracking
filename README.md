@@ -1,7 +1,7 @@
 # BackTracker
-## Matt Webster
+### Intro
 
-BackTracker is a social media website designed for users to share images, view other user's images and leave ratings. It's a multi page site that enables custom views to give users the most complete experience. BackTracker is a full-stack project utilising Django and bootstrap frameworks, emphasising database manipulation and CRUD functionality. The prject was developed as part of teh Code Institute's Full-Stack Developer bootcamp.
+BackTracker is a social media website designed for users to share images, view other user's images and leave ratings. It's a multi page site that enables custom views to give users the most complete experience. BackTracker is a full-stack project utilising Django and Bootstrap frameworks, emphasising database manipulation and CRUD functionality. The project was developed as part of the Code Institute's Full-Stack Developer Bootcamp.
 
 
 <img src="assets/images/mathsnakescreenshot.png">
@@ -10,19 +10,16 @@ Live link: [BackTracker](https://back-tracker-9bf98d85163a.herokuapp.com/)
 
 Admin link - superuser login required: [BackTracker Admin](https://back-tracker-9bf98d85163a.herokuapp.com/admin/)
 
-## Contents
+### Contents
 
 - [BackTracker](#backtracker)
-  - [Matt Webster](#matt-webster)
-  - [Contents](#contents)
+    - [Intro](#intro)
+    - [Contents](#contents)
   - [User Experience](#user-experience)
     - [Approach](#approach)
   - [Project Planning](#project-planning)
     - [Agile Project Management](#agile-project-management)
     - [User Stories](#user-stories)
-      - [Must Haves](#must-haves)
-      - [Should Haves](#should-haves)
-      - [Could haves](#could-haves)
     - [Wireframe](#wireframe)
     - [Userflow](#userflow)
     - [Entity Relationship Diagram](#entity-relationship-diagram)
@@ -50,7 +47,8 @@ Admin link - superuser login required: [BackTracker Admin](https://back-tracker-
 BackTracker was planned using the agile planning method allowing the project to be broken down into manageable chunks - see [project board in GitHub](<https://github.com/users/MGW-GH/projects/4>). Employing MoSCoW priotisation meant assigning labels to each chunk based on its necessity - 'Must Have, Should Have, Could Have' and completed in that order.
 
 ### User Stories
-#### Must Haves
+
+__Must Haves__
 - Login, Logout - As a registered user I can easily login and out for security
 - Navigation - As a site user I can navigate between pages to access all content
 - Manage Posts - As a site admin I can create, read, update and delete posts so that I can manage the site content
@@ -58,10 +56,12 @@ BackTracker was planned using the agile planning method allowing the project to 
 - View Posts - As a site user I can view a paginated list of posts so that I can select which post I want to view
 - Open a Post - As a site user I can click on a post so that I can read all the detail
 - Change Posts - As a site user I can edit or delete my own posts or ratings so that I can make desired updates
-#### Should Haves
+
+__Should Haves__
 -  Location - As a site user I can update my location so that users can see my location
 -  Rate Posts - As a site user I can like posts so that I can interact with other users' posts
-#### Could haves
+  
+__Could Haves__
 - Gallery - As a site user I can view a gallery so that I can see specific users' pictures
 - User Profile - As a site user I can click on my user profile so that I can see my personal view
 
