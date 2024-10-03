@@ -1,17 +1,83 @@
 # BackTracker
 ## Matt Webster
 
-BackTracker is a website designed for users to share images of their travels, view other user's images and leave ratings that can be seen and ranked. It's a multi page site that enables different filtered views to give users the fullest experience.
+BackTracker is a social media website designed for users to share images, view other user's images and leave ratings. It's a multi page site that enables custom views to give users the most complete experience. BackTracker is a full-stack project utilising Django and bootstrap frameworks, emphasising database manipulation and CRUD functionality. The prject was developed as part of teh Code Institute's Full-Stack Developer bootcamp.
 
 
 <img src="assets/images/mathsnakescreenshot.png">
 
-The live link can be found here - https://mgw-gh.github.io/Hackathon2MW/
+Live link: [BackTracker](https://back-tracker-9bf98d85163a.herokuapp.com/)
+
+Admin link - superuser login required: [BackTracker Admin](https://back-tracker-9bf98d85163a.herokuapp.com/admin/)
+
+## Contents
+
+- [BackTracker](#backtracker)
+  - [Matt Webster](#matt-webster)
+  - [Contents](#contents)
+  - [User Experience](#user-experience)
+    - [Approach](#approach)
+  - [Project Planning](#project-planning)
+    - [Agile Project Management](#agile-project-management)
+    - [User Stories](#user-stories)
+      - [Must Haves](#must-haves)
+      - [Should Haves](#should-haves)
+      - [Could haves](#could-haves)
+    - [Wireframe](#wireframe)
+    - [Userflow](#userflow)
+    - [Entity Relationship Diagram](#entity-relationship-diagram)
+  - [Features](#features)
+    - [User-Type View](#user-type-view)
+    - [Existing Features](#existing-features)
+    - [Future Features](#future-features)
+  - [Testing](#testing)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
+
+
+## User Experience
+
+### Approach
+
+  After a few idea trade-offs I settled on the idea of an image blogging website focusing on travel, that wouldshould allow users varied ways in which to filter and view images posted by themselves and others. The colour theme should be conisistent throughout as well as the navigation and layout.
+
+## Project Planning
+
+### Agile Project Management
+BackTracker was planned using the agile planning method allowing the project to be broken down into manageable chunks - see [project board in GitHub](<https://github.com/users/MGW-GH/projects/4>). Employing MoSCoW priotisation meant assigning labels to each chunk based on its necessity - 'Must Have, Should Have, Could Have' and completed in that order.
+
+### User Stories
+#### Must Haves
+- Login, Logout - As a registered user I can easily login and out for security
+- Navigation - As a site user I can navigate between pages to access all content
+- Manage Posts - As a site admin I can create, read, update and delete posts so that I can manage the site content
+- Account Registration - As a site user I can register an account so that I can comment on a post
+- View Posts - As a site user I can view a paginated list of posts so that I can select which post I want to view
+- Open a Post - As a site user I can click on a post so that I can read all the detail
+- Change Posts - As a site user I can edit or delete my own posts or ratings so that I can make desired updates
+#### Should Haves
+-  Location - As a site user I can update my location so that users can see my location
+-  Rate Posts - As a site user I can like posts so that I can interact with other users' posts
+#### Could haves
+- Gallery - As a site user I can view a gallery so that I can see specific users' pictures
+- User Profile - As a site user I can click on my user profile so that I can see my personal view
+
+### Wireframe
+
+### Userflow
+
+### Entity Relationship Diagram
 
 ## Features 
 
-Detailing the existing and planned features and the value they bring.
-
+### User-Type View
+For the best user experience whilst encouraging registering to the app most of the website has been developed to allow viewing reagrdless of whether the user is registered or not. 
+- Registered User - Can view all of the site including their personal profile and gallery and add, edit and delete posts and ratings.
+- Unregistered User - Can view most of the site such as home page, feed and individual posts but cannot add, edit and delete posts and ratings nor see a profile or gallery view.
+  
 ### Existing Features
 
 - __Favicon__
@@ -27,44 +93,8 @@ Detailing the existing and planned features and the value they bring.
 
 <img src="assets/images/operators.png">
 
-- __Canvas (Snake Board)__
 
-  - The canvas is created so the game can be played/drawn on top of it acting as the board that the snake will travel on.
-  - Good contrast of colors makes it easy to see all the pipeces drawn on the canvas.
-  - Good contrast to the remainder of the body, clearly visible where the board starts and stops.
-  - 
-
-<img src="assets/images/canvas].png">
-
-- __Equation__ 
-
-  - The equation appears in the form 'X (operator chosen) Y = Z' with one of the elements replaced by a '?' and the corresponsding answer, as well as one incorrect answer, are randomly placed on the canvas.
-  - When either of the answers are eaten a new equation will generate with the same operator as before.
-  - The operator will change when a different one is selected above.
-
-<img src="assets/images/equation.png">
-
-- __Score__
-
-  - The score appears below the equation is updated as the game is played.
-  - Good color scheme linking it the header.
-  - Calculated to get exponentially bigger as more correct answers are consumed.
-
-<img src="assets/images/scoe.png">
-
-- __Direction control__
-
-  - A change direction function is used to allow the user to control the direction of the snake without it being able to go in the opposite direction.
-  - The snake can be controlled by touch using the arrow buttons or by using arrows on a keyboard.
-  - This makes the game viable for users of any device.
-
-<img src="assets/images/touchdirections.png"> 
-
-- __Snake Growth__
-- Functionality that increases the size of the snake when the correct answer is eaten.
-
-
-### Features Left to Implement
+### Future Features
 
 - __Score erosion__
 
@@ -74,74 +104,9 @@ Detailing the existing and planned features and the value they bring.
   - Create a function where eating the wrong answer generates a snake which increases in size as more wrong answers are eaten.
   - This will need to include functionality to change direction when the real snake changes direction and the new direction will be randomly generated.
   - Add a game over function which runs if there is some specific form of contact between the snakes.
-  
-- __Walls__
-  - Include a function that also runs a game over function when the snake's head leaves the canvas.
-  
-- __Head-on-Snake__
-  - Include functionality so the game over fucntion is also called if the snake's head comes into contact with intself.
-
-
-
-## UX/UI
-
-- __UX__
-
-  The site will be presented as fun and engaging. Users can choose their preferred mathematical operator which will generate an equation. The board in central drawing the user in to play the game. A score is provided and easily seen whilst playing, with direction buttons below for ease of use to mobiles users.
-
-- __User Stories__
-
-  - As a user of this website, I want to easily be able to play the game.
-  - As a user, I want to see my score as I play.
-  - As a user, I want the game to work as anticipated.
-  - As a user, I want to be able to see the content of the game clearly.
-  - As a user, I want the game to have a game over scenario.
-  - As a user, I want to be able to use touch to control the game directions.
-  - As a user, I want the game to fit my device screen.
-  - As the product owner, I want the game to work as expected.
-
-- __Wireframes__
-<img src="assets/images/wireframeMS.png">
-  
 
 ## Testing 
-
-
-- __Lighthouse__
-  - The lighthouse test is used to give a score for performance, SEO, accessibility and best practices.
-  
-  <img src="assets/images/lighthouse.png">
-
-  - Returned scores of 74, 91, 91 & 100 respectively meaning the performance could be improved as our hero image takes 7.8 secs to load.
-
-  <img src="assets/images/lighthouseperfroamnc.png">
-
-  - You can use the timeframe option to test the performance whilst the game is being played.
-  
-  <img src="assets/images/lighthousetimeframe.png">
-
-### Validator Testing 
-
-- HTML
-  - No errors were returned when passing through the official [W3C html validator] 
-  
-  <img src="assets/images/htmltest.png">
-
-- CSS
-  - 2 errors were found and just 1 warning when passing through the official [W3C Jigsaw validator]
-
-<img src="assets/images/cssfail.png">
-
-  - Updated CSS with no errors
-
-<img src="assets/images/csstestsuccess.png">
-
-- JavaScript
-  
-  - 47 warnings were found when passing the js code through Hint, but 0 errors [JS Hint]
-
-<img src="assets/images/hint.png">
-
+- For detailed testing please refer to the [TESTING.md](TESTING.md) file.
 
 ## Deployment
 
@@ -171,3 +136,5 @@ This section will reference any code used from other repositories as well citati
 - The icon used for the favicon was taken from favicon (https://favicon.io/) 
 - The icon used for the S in the header was taken from fontawesome (https://fontawesome.com/)
 - Wireframe was created using Balsamiq (https://balsamiq.com/)
+
+### Acknowledgements
