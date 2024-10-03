@@ -32,6 +32,10 @@ def stamp_detail(request, title):
     ratings = stamp.ratings.all().order_by("-created_at")
     rating_count = stamp.ratings.filter(approved=True).count()
 
+    user_has_rated = False
+    if request.user.is_authenticated:
+        user_has_rated = stamp.ratings.filter(user=request.user).exists()
+
     if request.method == "POST":
         print("Received a POST request")
         rating_form = RatingForm(data=request.POST)
@@ -44,6 +48,7 @@ def stamp_detail(request, title):
                 request, messages.SUCCESS,
                 'Rating submitted'
             )
+            return redirect('stamp_detail', title=title)
 
     rating_form = RatingForm(data=request.POST)
     print("About to render template")
@@ -55,6 +60,7 @@ def stamp_detail(request, title):
         "ratings": ratings,
         "rating_count": rating_count,
         "rating_form": rating_form,
+        "user_has_rated": user_has_rated,
         },
     )
 

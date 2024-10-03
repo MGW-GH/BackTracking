@@ -112,7 +112,7 @@
         <!-- Creating New Ratings -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
-                {% if user.is_authenticated and user != stamp.user %}
+                {% if user.is_authenticated and user != stamp.user and not user_has_rated %}
                 <h3>Leave a rating:</h3>
                 <p>Posting as: {{ user }}</p>
                 <form id="ratingForm" method="post" style="margin-top: 1.3em;">
@@ -120,7 +120,7 @@
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
-                {% elif user.is_authenticated and user == stamp.user %}
+                {% elif user.is_authenticated %}
 
                 {% else %}
                 <p>Log in to leave a rating</p>
