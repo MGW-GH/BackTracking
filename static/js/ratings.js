@@ -21,7 +21,7 @@ for (let button of editButtons) {
         }
 
         submitButton.innerText = "Update";
-        ratingForm.setAttribute("action", `edit_rating/${ratingId}`);
+        ratingForm.setAttribute("action", `/blog/${title}/edit_rating/${ratingId}`);
         console.log("Form action set to: ", ratingForm.action);  
     });
 }

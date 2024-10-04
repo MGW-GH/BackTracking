@@ -101,7 +101,6 @@
                     {% endif %}
                     {% if user.is_authenticated and rating.user == user %}
                     <button class="btn btn-delete" data-rating-id="{{ rating.id }}">Delete</button>
-                    <button class="btn btn-edit" data-rating-id="{{ rating.id }}">Edit</button>
                     {% endif %}
                 </div>
                 {% endfor %}
