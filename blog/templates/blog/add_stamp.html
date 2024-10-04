@@ -22,7 +22,7 @@
 </head>
 <body class="bg-warning-gradient">
     <div class="container mt-5">
-        <h2>Add a New Stamp or Edit</h2>
+        <h2>{% if edit_mode %} Edit Stamp {% else %} Add a New Stamp {% endif %}</h2>
         <hr>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

@@ -124,15 +124,18 @@ def edit_stamp(request, title):
     if request.method == "POST":
         form = StampForm(request.POST, request.FILES, instance=stamp)
         if form.is_valid():
-            stamp = form.save(commit=False)  # Don't save yet
-            stamp.user = request.user  # Assign the current user to the stamp
+            stamp = form.save(commit=False)
+            stamp.user = request.user
             stamp.save()
             messages.success(request, "Stamp updated successfully.")
             return redirect('stamp_detail', title=title)
     else:
         form = StampForm(instance=stamp)
     return render(request, 'blog/add_stamp.html', {
-        'form': form, 'stamp': stamp})
+        'form': form,
+        'stamp': stamp,
+        'edit_mode': True,
+    })
 
 
 def delete_stamp(request, title):
