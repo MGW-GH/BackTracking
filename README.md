@@ -134,7 +134,8 @@ For the best user experience whilst encouraging registering to the app most of t
   - On the stamp detail page tis section allows users to leave a rating for the stamp being viewed as long as they did not post it and they haven't left a rating on the stamp previously.
   - This adds a personalised touch to engage the user to be a part of the website even if they haven't posted anything themselves.
   - The rating is applied as a percentage score and must take a value between 0 and 100.
-  
+
+<img src="static/images/new_rating_feature.png"> 
 <img src="static/images/rating_feature.png">
 
 - __Add Stamp__
