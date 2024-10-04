@@ -65,7 +65,7 @@ __Gallery__
 - [urls](static/images/gallery_urls.png)
 - [views](static/images/gallery_views.png)
 
-__[Env](static/images/env.png)__
+__[env](static/images/env.png)__
 
 ## Manual Testing
 
