@@ -28,12 +28,12 @@ Admin link - superuser login required: [BackTracker Admin](https://back-tracker-
     - [Existing Features](#existing-features)
     - [CRUD Functionality](#crud-functionality)
     - [Future Features](#future-features)
+  - [Technologies and Languages](#technologies-and-languages)
   - [Testing](#testing)
   - [Deployment](#deployment)
   - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
-    - [Acknowledgements](#acknowledgements)
 
 
 ## User Experience
@@ -142,6 +142,10 @@ For the best user experience whilst encouraging registering to the app most of t
   - The login page enable a reigstered user to sign in using their username and password and directed to the home page.
   - The logout page is accessed by clicking the link in the navbar. The page checks the user is they're sure they want to log out and will only perform the logout when the button is selected.
 
+- __Admin Panel__
+  - Through Django's built-in Administration Panel, the Admin has full access over the data submitted to the website by registered users. To access the Admin panel the Admin user adds '/admin/' to the end of the URL.
+  - It includes night and day modes as well as a custom filter within the panel to search stamps by country.
+
 ### CRUD Functionality
 
 The CRUD functionality is in action in multiple places across the site for both admin and users. 
@@ -158,19 +162,171 @@ The CRUD functionality is in action in multiple places across the site for both 
 - __Tracker__
   - Based on the users posted stamps this will show a diagram or map highlighting countries visited and current location/status.
 
+## Technologies and Languages
+
+- HTML
+- CSS
+- JavaScript
+- Python
+- Git
+- GitHub
+- Django
+- Cloudinary
+- PostgreSQL
+- Heroku
+
+__Libraries & Frameworks__
+- asgiref==3.8.1
+- bootstrap==5.0.1
+- cloudinary==1.41.0
+- crispy-bootstrap5==0.7
+- dj-database-url==0.5.0
+- dj3-cloudinary-storage==0.0.6
+- Django==4.2.16
+- django-allauth==0.57.2
+- django-countries==7.6.1
+- django-crispy-forms==2.3
+- django-summernote==0.8.20.0
+- gunicorn==20.1.0
+- oauthlib==3.2.2
+- pillow==10.4.0
+- psycopg==3.2.2
+- PyJWT==2.9.0
+- python3-openid==3.2.0
+- requests-oauthlib==2.0.0
+- sqlparse==0.5.1
+- urllib3==1.26.20
+- whitenoise==5.3.0
+
+__Tools__
+- Lucidchart
+- Balsamiq
+- Brandcrowd
+- GitHub Projects
+- Gencraft
+
 ## Testing 
 - For detailed testing please refer to the [TESTING.md](TESTING.md) file.
 
 ## Deployment
 
-This section describes the process we went through to deploy the project to GitHub.
+__Connecting to GitHub__
 
-- The site was deployed to GitHub pages. The steps to deploy are as follows: 
-  - In the GitHub repository, navigate to the Settings tab 
-  - From the source section drop-down menu, select the Master Branch
-  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
+To begin the project from scratch, you must first create a new GitHub repository using the [Code Institute's Template](https://github.com/Code-Institute-Org/ci-full-template). This template provides the relevant tools to get you started. To use this template:
 
-The live link can be found here - https://mgw-gh.github.io/Hackathon2MW/
+1. Log in to [GitHub](https://github.com/) or create a new account.
+2. Navigate to the above CI Full Template.
+3. Click '**Use this template**' -> '**Create a new repository**'.
+4. Choose a new repository name and click '**Create repository from template**'.
+5. In your new repository space, click the Code (if this is your IDE of choice) button to generate a new workspace.
+
+__Django Project Setup__
+
+1. Install Django and supporting libraries: 
+   
+- ```pip3 install 'django<4' gunicorn```
+- ```pip3 install dj_database_url psycopg2```
+- ```pip3 install dj3-cloudinary-storage```  
+  
+2. Once you have installed any relevant dependencies or libraries, such as the ones listed above, it is important to create a **requirements.txt** file and add all installed libraries to it with the ```pip3 freeze --local > requirements.txt``` command in the terminal.  
+3. Create a new Django project in the terminal ```django-admin startproject back_tracker .```
+4. Create a new app eg. ```python3 mangage.py startapp blog```
+5. Add this to list of **INSTALLED_APPS** in **settings.py** - 'blog',
+6. Create a superuser for the project to allow Admin access and enter credentials: ```python3 manage.py createsuperuser```
+7. Migrate the changes with commands: ```python3 manage.py migrate```
+8. An **env.py** file must be created to store all protected data such as the **DATABASE_URL** and **SECRET_KEY**. These may be called upon in your project's **settings.py** file along with your Database configurations. The **env.py** file must be added to your **gitignore** file so that your important, protected information is not pushed to public viewing on GitHub. For adding to **env.py**:
+
+- ```import os```
+- ```os.environ["DATABASE_URL"]="<copiedURLpostgreSQLlink>"```
+- ```os.environ["SECRET_KEY"]="my_super^secret@key"```
+  
+For adding to **settings.py**:
+
+- ```import os```
+- ```import dj_database_url```
+- ```if os.path.exists("env.py"):```
+- ```import env```
+- ```SECRET_KEY = os.environ.get('SECRET_KEY')``` (actual key hidden within env.py)  
+
+9. Replace **DATABASES** with:
+
+```
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+  }
+```
+
+10. Set up the templates directory in **settings.py**:
+- Under ``BASE_DIR`` enter ``TEMPLATES_DIR = os.path.join(BASE_DIR, ‘templates’)``
+- Update ``TEMPLATES = 'DIRS': [TEMPLATES_DIR]`` with:
+
+```
+os.path.join(BASE_DIR, 'templates'),
+os.path.join(BASE_DIR, 'templates', 'allauth')
+```
+
+- Create the media, static and templates directories in top level of project file in IDE workspace.
+
+11. A **Procfile** must be created within the project repo for Heroku deployment with the following placed within it: ```web: gunicorn back_tracker.wsgi```
+12. Make the necessary migrations again.
+
+__Cloudinary API__
+
+Cloudinary provides a cloud hosting solution for media storage. All user uploaded images and the home page image in the BackTrackers project are hosted here and converted and served as .webp.
+
+Set up a new account at [Cloudinary](https://cloudinary.com/) and add your Cloudinary API environment variable to your **env.py** and Heroku Config Vars.
+In your project workspace: 
+
+- Add Cloudinary libraries to INSTALLED_APPS in settings.py 
+- In the order: 
+```
+   'cloudinary_storage',  
+   'django.contrib.staticfiles',  
+   'cloudinary',
+```
+- Add to **env.py** and link up with **settings.py**: ```os.environ["CLOUDINARY_URL"]="cloudinary://...."``` 
+- Set Cloudinary as storage for media and static files in settings.py:
+- ```STATIC_URL = '/static/'```
+```
+  STATIC_URL = 'static/'  
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]  
+  STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')‌  
+  MEDIA_URL = '/media/'  
+  DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+```
+
+__PostgreSQL Database__
+
+A new database instance can be created using the [Code Institute Database Maker](https://dbs.ci-dbs.net/) for your project.
+
+- Input your email address and "submit".
+- You will have received an email with your new PostgreSQL database URL.
+- Copy the URL.
+- In your IDE terminal: pip3 install dj-database-url~=0.5 psycopg and freeze requirements.
+- From your email, retrieve the important 'postgres://....' value. Place the value within your **DATABASE_URL**  in your **env.py** file and follow the below instructions to place it in your Heroku Config Vars.
+
+
+__Heroku Deployment__
+
+To start the deployment process , please follow the below steps:
+
+1. Log in to [Heroku](https://id.heroku.com/login) or create an account if you are a new user.
+2. Once logged in, in the Heroku Dashboard, navigate to the '**New**' button in the top, right corner, and select '**Create New App**'.
+3. Enter an app name and choose your region. Click '**Create App**'. 
+4. In the Deploy tab, click on the '**Settings**', reach the '**Config Vars**' section and click on '**Reveal Config Vars**'. Here you will enter KEY:VALUE pairs for the app to run successfully. The KEY:VALUE pairs that you will need are your: 
+   
+   - **CLOUDINARY_URL**: **cloudinary://....** 
+   - **DATABASE_URL**:**postgres://...** 
+   - **DISABLE_COLLECTSTATIC** of value '1' (N.B Remove this Config Var before deployment),
+   - **PORT**:**8000**
+   -  **SECRET_KEY** and value  
+  
+5. Add the Heroku host name into **ALLOWED_HOSTS** in your projects **settings.py file** -> ```['herokuappname', ‘localhost’, ‘8000 port url’].```
+6. Once you are sure that you have set up the required files including your requirements.txt and Procfile, you have ensured that **DEBUG=False**, save your project, add the files, commit for initial deployment and push the data to GitHub.
+7. Go to the '**Deploy**' tab and choose GitHub as the Deployment method.
+8. Search for the repository name, select the branch that you would like to build from, and connect it via the '**Connect**' button.
+9.  Choose from '**Automatic**' or '**Manual**' deployment options, I chose the 'Manual' deployment method. Click '**Deploy Branch**'.
+10. Once the waiting period for the app to build has finished, click the '**View**' link to bring you to your newly deployed site. If you receive any errors, Heroku will display a reason in the app build log for you to investigate. **DISABLE_COLLECTSTATIC**  may be removed from the Config Vars once you have saved and pushed an image within your project, as can **PORT:8000**.
 
 
 ## Credits 
@@ -179,15 +335,14 @@ This section will reference any code used from other repositories as well citati
 
 ### Content 
 
-- parts of the html, css and javascript code for the canvas and game functionality were taken from YouTube (https://www.youtube.com/watch?v=baBq5GAL0_U)
-- Parts of the html, css and javascript code for the operator buttons was taken from Code Institute GitHub repo (https://github.com/Code-Institute-Org/love-maths)
-- Code implemented to problem solve responsivesness taken from chatGPT (https://chatgpt.com/)
-- The text font used was from Google fonts (https://fonts.google.com/)
+- Parts of the html, css, javascript and python code were taken from this [Code Institute GitHub repo](https://github.com/Code-Institute-Solutions/blog/tree/main)
+- Code implemented to problem solve bugs taken from [ChatGPT](https://chatgpt.com/)
+- The text font used was from [Google fonts](https://fonts.google.com/)
 
 ### Media
 
-- The icon used for the favicon was taken from favicon (https://favicon.io/) 
-- The icon used for the S in the header was taken from fontawesome (https://fontawesome.com/)
-- Wireframe was created using Balsamiq (https://balsamiq.com/)
-
-### Acknowledgements
+- The icon used for the favicon was taken from [Favicon](https://favicon.io/) 
+- The icon used for the add stamp button in the navbar as well as the social media icons in the footer were taken from [Fontawesome](https://fontawesome.com/)
+- The logo in the navbar was made using [Brandcrowd](https://www.brandcrowd.com/)
+- The background image ioon the home page was created using [Gencraft](https://gencraft.com/)
+- Images served on the feed are either taken from individuals who've contributed to the site or [Google Images](https://images.google.co.uk/)
