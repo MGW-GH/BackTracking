@@ -10,19 +10,16 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let ratingId = e.target.getAttribute("rating_id");
+        let ratingId = e.target.dataset.ratingId;
         
-        // Get the rating content as an integer
         let ratingContent = parseInt(document.getElementById(`rating${ratingId}`).innerText, 10);
         
-        // Update the form input value
-        if (ratingText) { // Check if ratingText is not null
+        if (ratingText) {
             ratingText.value = ratingContent;
         } else {
             console.error("ratingText element not found");
         }
 
-        // Update button text and form action
         submitButton.innerText = "Update";
         ratingForm.setAttribute("action", `edit_rating/${ratingId}`);
         console.log("Form action set to: ", ratingForm.action);  
