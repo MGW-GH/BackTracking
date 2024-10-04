@@ -67,10 +67,16 @@ __Could Haves__
 - User Profile - As a site user I can click on my user profile so that I can see my personal view
 
 ### Wireframe
+Wireframes showing different page designs on different devices. Over the course of the project some of these developed slightly but the underlying ideas are very similar.
+<img src="static/images/wireframeBT.png">
 
 ### Userflow
+The userflow diagram is designed to show how a User can naviaget through the website.
+<img src="static/images/userflow.png">
 
 ### Entity Relationship Diagram
+The ERD is created to help map out the different models and fields required and how they link between each other.
+<img src="static/images/ERD.png">
 
 ## Features 
 
