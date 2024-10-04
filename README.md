@@ -86,12 +86,30 @@ For the best user experience whilst encouraging registering to the app most of t
   
 <img src="assets/images/tabsnake.png">
 
-- __Operator Buttons__
+- __Header & Navbar__
 
   - The operator buttons allow the user to choose which type of sum they want and indicates the operator that's been chosen by highlighting.
   - Simple and effective design that draws the user into interacting with the page.
 
 <img src="assets/images/operators.png">
+
+- __Home Page__
+
+- __Country Search__
+
+- __Stamp Feed__
+
+- __Stamp Detail__
+
+- __Ratings__
+
+- __Add Stamp__
+
+- __Gallery__
+
+- __Register__
+
+- __Sign In & Sign Out__
 
 
 ### Future Features
