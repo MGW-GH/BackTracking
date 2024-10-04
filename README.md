@@ -91,41 +91,51 @@ For the best user experience whilst encouraging registering to the app most of t
   
   - The favicon depicts a rucksack and can be seen on the window's tab. It makes the web page more attractive to users and relates to the site purpose and content.
   
-<img src="assets/images/tabsnake.png">
+<img src="static/images/favicon.png">
 
 - __Header & Navbar__
 
   - The navbar runs a consistent theme throughout the pages with circular navigation to all pages for the best user experience.
   - The navbar includes a specially designed logo as well as responsive bootstrap classes to turn the links into a burger toggle when screen size is reduced.
 
-<img src="assets/images/operators.png">
+<img src="static/images/navbar.png">
 
 - __Home Page__
   
   - The home page is a clean design with one background image covering the space between header and footer, relevant to the site content.
   - The search bar in the centre allows users to search for a specific country by clicking or typing.
 
+<img src="static/images/home_feature.png">
+
 - __Country Search__
   
   - Once a country is selected and searched a new page will appear with a continuing header and footer theme and content showing all stamp's tagged with the country searched.
   - This feature gives users a chance to see some of site content and functionality without being registered or signed in.
+
+<img src="static/images/">
 
 - __Stamp Feed__
   
   - The main feed for the website displays all stamps across a paginated design with a maximum of 8 staps on a single page oredered by date posted.
   - This page is successfully responsive to changes in device size and continues to employ the colour scheme from the headr and footer for best UX.
 
+<img src="static/images/feed_feature.png">
+
 - __Stamp Detail__
   
   - When the title of a stamp is clicked on from the feed it wil direct the user to stamp detail page consisting solely of the stamp clicked on along with the stamp details such as country and location and date posted.
   - This view gives a clearer look at the image imporivng the depth of experience for the user.
   - This page also includes the ability to edit and delete stamps or ratings if the user viewing created them.
+
+<img src="static/images/stamp_detail_feature.png">
   
 - __Ratings__
   
   - On the stamp detail page tis section allows users to leave a rating for the stamp being viewed as long as they did not post it and they haven't left a rating on the stamp previously.
   - This adds a personalised touch to engage the user to be a part of the website even if they haven't posted anything themselves.
   - The rating is applied as a percentage score and must take a value between 0 and 100.
+  
+<img src="static/images/rating_feature.png">
 
 - __Add Stamp__
   
@@ -133,24 +143,34 @@ For the best user experience whilst encouraging registering to the app most of t
   - This is the only page that does breaks the header and footer styling but the colour theme is applied to the background.
   - This is hugely important and its functionality allows for content to be added to the website which is one of, if not the, main requirement.
 
+<img src="static/images/add_stamp_feature.png">
+
 - __Gallery__
   
   - The link for the gallery should only be visible in navbar to logged in users so they can view a page of all of their own stamp posts.
   - This is another feature that gives a user tailored view for greater experience.
 
+<img src="static/images/">
+
 - __Register__
   
   - Users are required to enter a username and password to create an account with the option of an email address and password criteria.
   - It also has a link to the login page if the user already has an account.
+  
+<img src="static/images/">
 
 - __Login & Logout__
 
   - The login page enable a reigstered user to sign in using their username and password and directed to the home page.
   - The logout page is accessed by clicking the link in the navbar. The page checks the user is they're sure they want to log out and will only perform the logout when the button is selected.
 
+<img src="static/images/">
+
 - __Admin Panel__
   - Through Django's built-in Administration Panel, the Admin has full access over the data submitted to the website by registered users. To access the Admin panel the Admin user adds '/admin/' to the end of the URL.
   - It includes night and day modes as well as a custom filter within the panel to search stamps by country.
+
+<img src="static/images/admin_feature.png"><img src="static/images/admin_night_feature.png">
 
 ### CRUD Functionality
 
@@ -158,6 +178,8 @@ The CRUD functionality is in action in multiple places across the site for both 
 - Within the admin site stamps, ratings and users can be created, edited and deleted.
 - Registered users can create, edit and delete stamps from the main site given certain criteria.
 - Registered users can create, edit and delete ratings for stamps from the stamp detail page given certain criteria.
+
+<img src="static/images/CRUD_delete.png">
 
 ### Future Features
 
