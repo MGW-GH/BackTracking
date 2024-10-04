@@ -4,7 +4,7 @@
 BackTracker is a social media website designed for users to share images, view other user's images and leave ratings. It's a multi page site that enables custom views to give users the most complete experience. BackTracker is a full-stack project utilising Django and Bootstrap frameworks, emphasising database manipulation and CRUD functionality. The project was developed as part of the Code Institute's Full-Stack Developer Bootcamp.
 
 
-<img src="assets/images/mathsnakescreenshot.png">
+<img src="static/images/amiresponsive.png">
 
 Live link: [BackTracker](https://back-tracker-9bf98d85163a.herokuapp.com/)
 
