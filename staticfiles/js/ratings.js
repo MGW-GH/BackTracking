@@ -50,7 +50,7 @@ for (let button of deleteButtons) {
 
   const deleteStampButtons = document.getElementsByClassName("btn-delete-stamp");
   const deleteStampModal = new bootstrap.Modal(document.getElementById("deleteStampModal"));
-  const deleteConfirmStamp = document.getElementById("deleteConfirmStamp"); // If you have a specific confirmation button
+  const deleteConfirmStamp = document.getElementById("deleteConfirmStamp");
   
   for (let button of deleteStampButtons) {
       button.addEventListener("click", (e) => {

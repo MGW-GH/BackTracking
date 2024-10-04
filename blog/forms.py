@@ -5,16 +5,17 @@ from django import forms
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ['percentage_score']  # Ensure you're editing this field
+        fields = ['percentage_score']
         widgets = {
             'percentage_score': forms.NumberInput(attrs={
-                'class': 'form-control',  # Use a number input in HTML
+                'class': 'form-control',
                 'min': '0',
                 'max': '100',
             }),
         }
 
+
 class StampForm(forms.ModelForm):
     class Meta:
         model = Stamp
-        fields = ['title', 'country', 'location', 'image', 'status'] 
+        fields = ['title', 'country', 'location', 'image', 'status']

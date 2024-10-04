@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from .models import Stamp, Rating
 from .forms import RatingForm, StampForm
 
-# Create your views here.
+
 class StampList(generic.ListView):
     queryset = Stamp.objects.all()
     template_name = "blog/stamp_feed.html"
@@ -57,11 +57,10 @@ def stamp_detail(request, title):
         request,
         "blog/stamp_detail.html",
         {"stamp": stamp,
-        "ratings": ratings,
-        "rating_count": rating_count,
-        "rating_form": rating_form,
-        "user_has_rated": user_has_rated,
-        },
+         "ratings": ratings,
+         "rating_count": rating_count,
+         "rating_form": rating_form,
+         "user_has_rated": user_has_rated, },
     )
 
 
@@ -69,7 +68,6 @@ def rating_edit(request, title, rating_id):
     """
     View to edit ratings.
     """
-    # Fetch the rating object based on rating_id and ensure it's by the current user
     rating = get_object_or_404(Rating, pk=rating_id, user=request.user)
 
     if request.method == "POST":
@@ -77,7 +75,6 @@ def rating_edit(request, title, rating_id):
         rating_form = RatingForm(data=request.POST, instance=rating)
 
         if rating_form.is_valid():
-            # Update the rating but keep it pending approval
             rating = rating_form.save(commit=False)
             rating.approved = False
             rating.save()
@@ -86,6 +83,7 @@ def rating_edit(request, title, rating_id):
             messages.error(request, 'Error updating rating!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
+
 
 def rating_delete(request, title, rating_id):
     queryset = Stamp.objects
@@ -96,7 +94,9 @@ def rating_delete(request, title, rating_id):
         rating.delete()
         messages.add_message(request, messages.SUCCESS, 'Rating removed!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own ratings!')
+        messages.add_message(
+            request, messages.ERROR,
+            'You can only delete your own ratings!')
 
     return HttpResponseRedirect(reverse('stamp_detail', args=[title]))
 
@@ -104,15 +104,14 @@ def rating_delete(request, title, rating_id):
 @login_required
 def add_stamp(request):
     if request.method == 'POST':
-        form = StampForm(request.POST, request.FILES) 
+        form = StampForm(request.POST, request.FILES)
         if form.is_valid():
-            stamp = form.save(commit=False)  # Don't save yet
-            stamp.user = request.user  # Assign the current user to the stamp
-            stamp.save()  # Now save the stamp
-            return redirect('feed')  # Redirect to a success page, e.g., the home page
+            stamp = form.save(commit=False)
+            stamp.user = request.user
+            stamp.save()
+            return redirect('feed')
     else:
         form = StampForm()
-    
     return render(request, 'blog/add_stamp.html', {'form': form})
 
 
@@ -132,8 +131,9 @@ def edit_stamp(request, title):
             return redirect('stamp_detail', title=title)
     else:
         form = StampForm(instance=stamp)
+    return render(request, 'blog/add_stamp.html', {
+        'form': form, 'stamp': stamp})
 
-    return render(request, 'blog/add_stamp.html', {'form': form, 'stamp': stamp})
 
 def delete_stamp(request, title):
     """
@@ -145,12 +145,13 @@ def delete_stamp(request, title):
         stamp.delete()
         messages.success(request, "Stamp deleted successfully.")
         return redirect('feed')
-    
     return redirect('stamp_detail', title=title)
-
 
 
 def search_results(request):
     country_initials = request.GET.get('country')
-    stamps = Stamp.objects.filter(country=country_initials) if country_initials else Stamp.objects.none()
-    return render(request, 'blog/search_results.html', {'stamps': stamps, 'country': country_initials})
+    stamps = Stamp.objects.filter(
+        country=country_initials
+        ) if country_initials else Stamp.objects.none()
+    return render(request, 'blog/search_results.html', {
+            'stamps': stamps, 'country': country_initials})

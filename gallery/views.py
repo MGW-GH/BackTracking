@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from blog.models import Stamp  # Import Stamp model
+from blog.models import Stamp
+
 
 # Create your views here.
 def gallery(request):
     """
-    Display the gallery of the logged-in user's images (Stamps)
+    Display the gallery of the logged-in user's stamps
     """
-    # Assuming the Stamp model has a ForeignKey linking to the User
-    stamps = Stamp.objects.filter(user=request.user)  # Filter stamps by the logged-in user
-
+    stamps = Stamp.objects.filter(user=request.user)
     return render(request, 'gallery/gallery.html', {'stamps': stamps})

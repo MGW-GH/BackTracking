@@ -4,9 +4,11 @@ from cloudinary.utils import cloudinary_url
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 
+
 STATUS = ((0, "Current location"), (1, "Past adventure"))
 
-# Create your models here.
+
+# Create models here.
 class Stamp(models.Model):
     title = models.CharField(max_length=100, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_stamps", null=True)
@@ -25,7 +27,6 @@ class Stamp(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.user}"
-
 
 
 class Rating(models.Model):

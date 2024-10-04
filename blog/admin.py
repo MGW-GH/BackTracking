@@ -4,6 +4,7 @@ from .models import Stamp
 from .models import Rating
 from django_summernote.admin import SummernoteModelAdmin
 
+
 @admin.register(Stamp)
 class StampAdmin(SummernoteModelAdmin):
 
@@ -13,6 +14,5 @@ class StampAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'location': ('title',)}
     summernote_fields = ('content',)
 
-# Register your models here.
 
 admin.site.register(Rating)
