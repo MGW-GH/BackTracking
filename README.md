@@ -151,21 +151,22 @@ For the best user experience whilst encouraging registering to the app most of t
   - The link for the gallery should only be visible in navbar to logged in users so they can view a page of all of their own stamp posts.
   - This is another feature that gives a user tailored view for greater experience.
 
-<img src="static/images/">
+<img src="static/images/gallery_feature.png">
 
 - __Register__
   
   - Users are required to enter a username and password to create an account with the option of an email address and password criteria.
   - It also has a link to the login page if the user already has an account.
   
-<img src="static/images/">
+<img src="static/images/registration_feature.png">
 
 - __Login & Logout__
 
   - The login page enable a reigstered user to sign in using their username and password and directed to the home page.
   - The logout page is accessed by clicking the link in the navbar. The page checks the user is they're sure they want to log out and will only perform the logout when the button is selected.
 
-<img src="static/images/">
+<img src="static/images/sign_in_feature.png">
+<img src="static/images/sign_out_feature.png">
 
 - __Admin Panel__
   - Through Django's built-in Administration Panel, the Admin has full access over the data submitted to the website by registered users. To access the Admin panel the Admin user adds '/admin/' to the end of the URL.
