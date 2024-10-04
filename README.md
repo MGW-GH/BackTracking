@@ -180,6 +180,7 @@ The CRUD functionality is in action in multiple places across the site for both 
 - Registered users can create, edit and delete ratings for stamps from the stamp detail page given certain criteria.
 
 <img src="static/images/CRUD_delete.png">
+<img src="static/images/edit_stamp_feature.png">
 
 ### Future Features
 
