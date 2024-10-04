@@ -13,6 +13,7 @@ Return to the [README.md](README.md).
     - [CSS - W3C Validator](#css---w3c-validator)
     - [JavaScript - JS Hint](#javascript---js-hint)
     - [Python - CI Python Linter](#python---ci-python-linter)
+    - [Lighthouse](#lighthouse)
   - [Manual Testing](#manual-testing)
     - [User Input/Form Validation](#user-inputform-validation)
     - [Browser Compatibility](#browser-compatibility)
@@ -66,6 +67,28 @@ __Gallery__
 - [views](static/images/gallery_views.png)
 
 __[env](static/images/env.png)__
+
+### Lighthouse
+Lighthouse scores showing metrics for performance, accessibility, best practices and SEO.
+
+__Home Page__
+ - Home page returned great metrics for desktop and mobile.
+<img src="static/images/lighthouse_home.png">
+<img src="static/images/lighthouse_home_mobile.png">
+
+__Add Stamp__
+ - Add stamp page also looking good.
+<img src="static/images/lighthouse_add_stamp.png">
+
+__Feed__
+ - Feed returned lower metrics as expected due to multiple images. Performance can be improved here.
+<img src="static/images/lighthouse_feedd.png">
+<img src="static/images/lighthouse_feeed_mobile.png">
+
+__Gallery__
+ - Similarly gallery returned lower performance as well as best practices, both could be improved.
+<img src="static/images/lighthouse_gallery.png">
+
 
 ## Manual Testing
 
